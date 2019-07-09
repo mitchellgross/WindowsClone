@@ -1,0 +1,286 @@
+@import "../common/_mixins.scss";
+@import "../common/_variables.scss";
+
+html{
+  @include userSelect(); //Stops highlighting
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow: hidden;
+}
+
+body{
+  height: 100%;
+  width: 100%;
+  background-image: url("../../images/wallpaper1.jpg");
+  background-color: black;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  font-family: arial;
+  color: white;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+#desktop{
+  position: absolute;
+  // display: flex;
+  // flex-direction: column;
+  // align-content: flex-start;
+  // justify-content: flex-start;
+  // flex-wrap: wrap;
+  // flex-grow: 1;
+  // flex-shrink: 0;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0 + $taskBarHeight;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 100px);
+  grid-template-rows: repeat(auto-fill, 100px);
+  grid-auto-flow: column;
+  grid-gap: 0px;
+  justify-content: flex-start;
+  overflow: hidden;
+  .shortcut{
+    max-height: 98px;
+    width: $shortcutWidth;
+    margin: $shortcutMargin;
+    border: 1px solid rgba(white, 0);
+    overflow: hidden;
+    box-sizing: border-box;
+    z-index: 0;
+    cursor: default;
+    &:hover{
+      background-color: rgba(skyblue, 0.3);
+      border: 1px solid rgba(skyblue, 0.3);
+    }
+  }
+  .shortcutSelected{
+    max-height: 130px;
+    background-color: rgba(lightblue, 0.3);
+    border: 1px solid rgba(lightblue, 0.3);
+    z-index: 1;
+  }
+  img{
+    position: relative;
+    display: block;
+    width: 80%;
+    height: auto;
+    margin: auto;
+    transform-origin: center;
+    transform: scale(0.75);
+    //filter: brightness(0) invert(1);
+  }
+  span{
+    display: block;
+    position: relative;
+    text-align: center;
+    word-wrap: break-word;
+    text-shadow: 2px 2px 1px black;
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
+
+#taskBar{
+  background-color: rgba(black, 0.8);
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: $taskBarHeight;
+  z-index: 101;
+  .taskBarButton{
+    position: relative;
+    top: 0px;
+    height: $taskBarHeight - 2px;
+    border-bottom: 2px solid skyblue;
+    margin-left: 3px;
+    margin-right: 3px;
+    width: 160px;
+    //background-color: blue;
+    line-height: $taskBarHeight;
+    //overflow: hidden;
+    img{
+      height: $taskBarHeight;
+      width: $taskBarHeight;
+      vertical-align: middle;
+      transform-origin: center;
+      transform: scale(0.6);
+    }
+    span{
+      font-size: 14px;
+    }
+    &:hover{
+      background-color: $hoverColor; //Change to a fade-out ONLY
+    }
+  }
+  #startButton{
+    position: relative;
+    background-color: rgba(white, 0);
+    height: 100%;
+    width: 50px;
+    border: none;
+    padding: 0;
+    float: left;
+    outline: inherit;
+    @include transition (background-color, 0.1s, linear);
+    img{
+      position: relative;
+      display: block;
+      height: 100%;
+      width: auto;
+      margin: auto;
+      transform-origin: center;
+      transform: scale(0.75);
+      filter: brightness(0) invert(1);
+    }
+    &:hover{
+      background-color: $hoverColor;
+      img{
+        filter: none;
+      }
+    }
+  }
+  #startMenu{
+    position: absolute;
+    display: none;
+    left: 0px;
+    top: 0px;
+    padding-top: 4px;
+    padding-right: 4px;
+    height: calc((100vh - #{$taskBarHeight}) * 0.65);
+    width: calc((100vh - #{$taskBarHeight}) * 0.6);
+    background-color: rgba(black, 0.9);
+    transform: translateY(-100%);
+    z-index: 5;
+    overflow: hidden;
+    #settingsList{
+      position: absolute;
+      display: flex;
+      flex-direction: column-reverse;
+      height: 100%;
+      width: 50px;
+      margin-top: 0px;
+      padding: 0;
+      list-style-type: none;
+      overflow-y: auto;
+      .settingsButtons{
+        position: relative;
+        width: 100%;
+        height: 50px;
+        img{
+          position: relative;
+          display: block;
+          height: 100%;
+          width: auto;
+          margin: auto;
+          transform-origin: center;
+          transform: scale(0.4);
+        }
+        &:hover{
+          background-color: $hoverColor;
+        }
+      }
+    }
+    #linkList{
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 250px;
+      left: 50px;
+      margin-top: 0px;
+      padding: 0;
+      list-style-type: none;
+      overflow-y: auto;
+      li{
+        display: block;
+        flex-grow: 0;
+        flex-shrink: 0;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        height: 35px;
+        width: 100%;
+        cursor: default;
+        img{
+          vertical-align: middle;
+          height: 100%;
+          width: auto;
+        }
+        &:hover{
+          background-color: rgba(white, 0.2);
+        }
+      }
+    }
+  }
+  .taskBarButtonFocus{
+    background-color: rgba(white, 0.3) !important;
+    z-index: 100 !important;
+  }
+}
+
+#powerMenu{
+  position: absolute;
+  display: none;
+  bottom: 50px;
+  left: 0px;
+  width: 150px;
+  background-color: #333333;
+  border: 1px solid #666666;
+  z-index: 6;
+  ul{
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 0px;
+    padding-right: 0px;
+    list-style-type: none;
+    li{
+      font-size: 16px;
+      padding-left: 10px;
+      height: 25px;
+      line-height: 25px;
+      &:hover{
+        background-color: $hoverColor;
+      }
+    }
+  }
+}
+
+#taskBarButtonMenu{
+  position: relative;
+  display: none;
+  bottom: $taskBarHeight;
+  left: -10%;
+  width: 120%;
+  background-color: #333333;
+  border: 1px solid #666666;
+  z-index: 6;
+  transform: translateY(-100%);
+  ul{
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 0px;
+    padding-right: 0px;
+    list-style-type: none;
+    li{
+      font-size: 16px;
+      padding-left: 10px;
+      height: 25px;
+      line-height: 25px;
+      &:hover{
+        background-color: $hoverColor;
+      }
+    }
+  }
+}

@@ -1,0 +1,68 @@
+.windowGeneric {
+  position: absolute;
+  display: none;
+  top: 0px;
+  left: 0px;
+  height: 500px;
+  width: 600px;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  z-index: 1;
+  overflow: hidden;
+}
+.windowGeneric:not(.draggable) {
+  -webkit-transition: all 0.05s linear 0s;
+  -moz-transition: all 0.05s linear 0s;
+  -ms-transition: all 0.05s linear 0s;
+  -o-transition: all 0.05s linear 0s;
+  transition: all 0.05s linear 0s;
+}
+.windowGeneric #title {
+  position: absolute;
+  height: 25px;
+  width: calc(100% - 150px);
+  overflow: hidden;
+  cursor: default;
+}
+.windowGeneric #title img {
+  height: 100%;
+  width: auto;
+  vertical-align: middle;
+  transform-origin: center;
+  transform: scale(0.7);
+}
+.windowGeneric .windowControls {
+  position: absolute;
+  display: flex;
+  right: 0px;
+  height: 25px;
+  width: 150px;
+  cursor: default;
+}
+.windowGeneric .windowControls span {
+  height: 100%;
+  width: 50px;
+  text-align: center;
+  line-height: 25px;
+}
+.windowGeneric .windowControls span:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+.windowGeneric .windowControls span:last-child:hover {
+  color: white;
+  background-color: red;
+}
+
+.maximizeWindow {
+  height: calc(100% - 40px) !important;
+  width: 100% !important;
+  top: 0px !important;
+  left: 0px !important;
+}
+
+.ui-resizable-handle {
+  opacity: 0;
+}
+
+/*# sourceMappingURL=appsCSS.css.map */

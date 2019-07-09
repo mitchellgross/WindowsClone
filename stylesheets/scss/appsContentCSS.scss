@@ -1,0 +1,507 @@
+@import "../common/_mixins.scss";
+@import "../common/_variables.scss";
+
+$colors: (red, orange, yellow, green, blue, purple, pink, black);
+
+.windowContent{
+  position: absolute;
+  top: $winHeadHeight;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow: auto;
+}
+
+.windowOptions{
+  position: absolute;
+  display: flex;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  font-size: 13.3px;
+  z-index: 3;
+  > button{
+    border: none;
+    outline: inherit;
+    background-color: white;
+    &:hover{
+      background-color: lightgrey;
+    }
+  }
+  > input{
+    width: 40px;
+  }
+  > span{
+    margin-left: 10px;
+    line-height: 20px;
+  }
+}
+
+#appSettingsContent{
+  ul{
+    position: absolute;
+    left: 0px;
+    width: 150px;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    li{
+      margin-left: 10%;
+      margin-bottom: 5px;
+      &:hover{
+        color: blue;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+  #backgroundSub{
+    #imageList{
+      img{
+        height: 100px;
+        width: 100px;
+        margin: 2px;
+        &:hover{
+          margin: 0px;
+          border: 2px solid grey;
+        }
+      }
+    }
+    #imgInvalid{
+      color: red;
+    }
+  }
+  #taskbarSub{
+    #colorList{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    @each $color in $colors{
+      .#{"" + $color} {
+        background-color: $color;
+        height: 50px;
+        width: 50px;
+        margin: 2px;
+        &:hover{
+          margin: 0px;
+          border: 2px solid grey;
+        }
+      }
+    }
+    #colorCustom{
+      height: 50px;
+      width: 50px;
+      background-color: rgba(0, 0, 0, 0);
+      border: none;
+    }
+  }
+  .sub{
+    display: none;
+    position: absolute;
+    left: 150px;
+    right: 0px;
+    &:first-of-type{
+      display: block;
+    }
+  }
+}
+
+#appNotepadContent{
+  #notepadOptions{
+    position: absolute;
+    display: flex;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    font-size: 13.3px;
+    #notepadOptions-Divider{
+      margin-left: 20px;
+      margin-right: 20px;
+      height: 100%;
+      width: 20px;
+    }
+    #notepadOptions-SaveInput{
+      position: absolute;
+      display: none;
+      top: 50%;
+      left: 0;
+      right: 0;
+      margin: auto;
+      height: 100px;
+      width: 200px;
+      padding: 5px;
+      background-color: white;
+      border: 1px solid grey;
+      z-index: 2;
+      > span, > input{
+        position: relative;
+        display: block;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      }
+    }
+    > button{
+      border: none;
+      outline: inherit;
+      background-color: white;
+      &:hover{
+        background-color: lightgrey;
+      }
+    }
+    > input{
+      width: 40px;
+    }
+    > span{
+      margin-left: 10px;
+      line-height: 20px;
+    }
+  }
+  textarea{
+    position: absolute;
+    top: 20px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 98%;
+    height: 95%;
+    font-size: 15px;
+    font-family: Arial;
+    margin: auto;
+    outline: inherit;
+    border: none;
+    resize: none;
+    overflow: none;
+  }
+}
+
+#appMusicPlayerContent{
+  //overflow: hidden !important;
+  #tableWrapper{
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 80px);
+    overflow: auto;
+    table{
+      position: absolute;
+      width: 100%;
+      border-collapse: collapse;
+      tr{
+        &:hover{
+          background-color: lightgrey;
+        }
+      }
+      td{
+        padding: 10px;
+        &:first-child{
+          width: 20px;
+          text-align: center;
+          &:hover{
+            background-color: skyblue;
+          }
+        }
+        &:last-child{
+          width: 20px;
+          text-align: center;
+        }
+      }
+    }
+  }
+  #musicPlayerControls{
+    position: absolute;
+    bottom: 0px;
+    left: 10px;
+    right: 10px;
+    height: 80px;
+    //border-top: 1px solid grey;
+    #musicPlayerControls-slider{
+      position: absolute;
+      height: 5px;
+      width: 90%;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      #custom-handle{
+        width: 30px;
+        height: 10px;
+        top: 0px;
+        bottom: 0px;
+        margin-top: auto;
+        margin-bottom: auto;
+        transform-origin: center;
+        transform: translateX(-25%);
+        background-color: skyblue;
+        text-align: center;
+        outline: inherit;
+      }
+      .ui-slider-range{
+        background-color: PaleTurquoise;
+      }
+    }
+    #musicPlayerControls-volume{
+      position: absolute;
+      height: 5px;
+      width: 100px;
+      top: 0;
+      bottom: 0;
+      margin-top: auto;
+      margin-bottom: auto;
+      right: calc(50% - 225px);
+      #custom-handle2{
+        width: 10px;
+        height: 10px;
+        top: 0px;
+        bottom: 0px;
+        margin-top: auto;
+        margin-bottom: auto;
+        transform-origin: center;
+        transform: translateX(50%);
+        background-color: skyblue;
+        border-radius: 90px 90px 90px 90px;
+        text-align: center;
+        outline: inherit;
+      }
+      .ui-slider-range{
+        background-color: PaleTurquoise;
+      }
+      span{
+        position: absolute;
+        width: 20px;
+        transform-origin: center;
+        transform: translate(-130%, -50%);
+        filter: grayscale(100%);
+        float: left;
+      }
+    }
+    #musicPlayerControls-time{
+      position: absolute;
+      height: 40px;
+      top: 0px;
+      bottom: 0px;
+      margin-top: auto;
+      margin-bottom: auto;
+      left: calc(50% - 130px);
+      line-height: 40px;
+      font-size: 20px;
+    }
+    button{
+      position: absolute;
+      margin: auto;
+      top: 0;
+      bottom: 0;
+      border-radius: 90px 90px 90px 90px;
+      border: none;
+      outline: inherit;
+      background-color: skyblue;
+      text-align: center;
+      color: white;
+    }
+    #musicPlayerControls-toggle{
+      height: 60px;
+      width: 60px;
+      left: 0;
+      right: 0;
+      line-height: 60px;
+      font-size: 30px;
+    }
+    #musicPlayerControls-back{
+      height: 40px;
+      width: 40px;
+      left: calc(50% - 80px);
+      line-height: 40px;
+      font-size: 20px;
+    }
+    #musicPlayerControls-forward{
+      height: 40px;
+      width: 40px;
+      right: calc(50% - 80px);
+      line-height: 40px;
+      font-size: 20px;
+    }
+  }
+}
+
+#appPaintContent{
+  #paintOptions-Color{
+    height: 90%;
+    width: 50px;
+    border: none;
+    background-color: white;
+  }
+  #paintOptions-Divider{
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 100%;
+    width: 20px;
+  }
+  #paintOptions-NewInput{
+    position: absolute;
+    display: none;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 100px;
+    width: 200px;
+    padding: 5px;
+    background-color: white;
+    border: 1px solid grey;
+    z-index: 2;
+    > span, > input{
+      position: relative;
+      display: block;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+  }
+  #paintOptions-SaveInput{
+    position: absolute;
+    display: none;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 100px;
+    width: 200px;
+    padding: 5px;
+    background-color: white;
+    border: 1px solid grey;
+    z-index: 2;
+    > span, > input{
+      position: relative;
+      display: block;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+  }
+  #paintTools{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 20px;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    button{
+      border: none;
+      outline: inherit;
+      height: 40px;
+      padding: 0;
+      background-color: white;
+      img{
+        height: 100%;
+        width: 100%;
+        margin: auto;
+      }
+      &:hover{
+        background-color: lightgrey;
+      }
+    }
+  }
+  #canvasDataWrapper{
+    position: relative;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+    #canvasCursorPos{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+    #canvasSizeDisplay{
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+  }
+
+  #paintCanvas{
+    position: relative;
+    top: 20px;
+    left: 40px;
+    right: 0;
+    bottom: 0;
+    margin: 10px;
+    border: 1px dashed grey;
+    // height: 400px;
+    // width: 500px;
+    //height: calc(100% - 20px);
+    //width: calc(100% - 40px);
+    //background-color: green;
+  }
+}
+
+#appImageViewerContent{
+  .imageViewer-Controls{
+    position: absolute;
+    font-size: 30px;
+    width: 20px;
+    background-color: lightgrey;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: inherit;
+    top: 50%;
+    text-align: center;
+    overflow: hidden;
+    &:hover{
+      background-color: skyblue;
+    }
+  }
+  #imageViewer-Next{
+    right: 0;
+  }
+  > img{
+    position: absolute;
+    top: 50px;
+    bottom: 50px;
+    left: 50px;
+    right: 50px;
+    margin: auto;
+    border: 1px solid grey;
+  }
+}
+
+#appTaskManagerContent{
+  ol{
+    width: 100%;
+    height: 90%;
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    overflow: auto;
+    li{
+      padding: 5px;
+      &:hover{
+        background-color: lightblue;
+      }
+    }
+    .ui-selecting{
+      background-color: lightblue;
+    }
+    .ui-selected{
+      background-color: skyblue;
+    }
+  }
+  button{
+    position: absolute;
+    bottom: 40px;
+    right: 10px;
+  }
+}

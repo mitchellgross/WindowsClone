@@ -1,0 +1,14 @@
+@mixin transition($property: all, $duration: 0.2s, $type: ease-in-out, $delay: 0s) {
+    -webkit-transition: $property $duration $type $delay;
+    -moz-transition:    $property $duration $type $delay;
+    -ms-transition:     $property $duration $type $delay;
+    -o-transition:      $property $duration $type $delay;
+    transition:         $property $duration $type $delay;
+}
+
+@mixin userSelect($value: none) {
+  -webkit-user-select: $value;
+  -moz-user-select: $value;
+  -ms-user-select: $value;
+  user-select: $value;
+}

@@ -1,0 +1,73 @@
+@import "../common/_mixins.scss";
+@import "../common/_variables.scss";
+
+.windowGeneric{
+  position: absolute;
+  display: none;
+  top: 0px;
+  left: 0px;
+  height: 500px;
+  width: 600px;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  z-index: 1;
+  overflow: hidden; //cutting off the scrollbar
+  &:not(.draggable){ //prevents transition from being applies while dragging
+    @include transition(all, 0.05s, linear); //this is causing the element to move smooth.
+  }
+  #title{
+    position: absolute;
+    //margin: 5px 5px 0px 5px;
+    height: $winHeadHeight;
+    width: calc(100% - 150px);
+    overflow: hidden;
+    cursor: default;
+    img{
+      height: 100%;
+      width: auto;
+      vertical-align: middle;
+      transform-origin: center;
+      transform: scale(0.7);
+      //filter: invert(100%);
+    }
+  }
+  .windowControls{
+    position: absolute;
+    display: flex;
+    right: 0px;
+    height: $winHeadHeight;
+    width: 150px;
+    cursor: default;
+    span{
+      height: 100%;
+      width: 50px;
+      text-align: center;
+      line-height: $winHeadHeight;
+      &:hover{
+        background-color: rgba(black, 0.15);
+      }
+      &:last-child:hover{
+        color: white;
+        background-color: red;
+      }
+    }
+  }
+}
+
+.maximizeWindow{
+  height: calc(100% - #{$taskBarHeight}) !important; //Makes this value overwrite any other values
+  width: 100% !important;
+  top: 0px !important;
+  left: 0px !important;
+}
+
+//OVERRIDES
+.ui-resizable-handle{ //makes the resize triangle invisible
+  opacity: 0;
+}
+
+// .minimizeWindow{
+//   height: 0px;
+//   width: 0px;
+// }
